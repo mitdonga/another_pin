@@ -50,11 +50,11 @@ gem "carrierwave"
 gem "mini_magick"
 gem "fog-aws"
 gem "devise" 
-# gem "activeadmin"
-# gem 'sassc-rails'
-# gem 'cancancan'
-# gem 'draper'
-# gem 'pundit'
+gem "activeadmin"
+gem 'sassc-rails'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
