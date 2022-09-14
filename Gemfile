@@ -44,7 +44,7 @@ gem "bootsnap", require: false
 
 gem "active_link_to"
 
-# gem "simple_form"
+gem "simple_form"
 
 gem "carrierwave"
 gem "mini_magick"
