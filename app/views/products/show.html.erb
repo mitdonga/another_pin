@@ -1,2 +1,10 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<h2><%= @product.title %></h2>
+<p><%= simple_format @product.description %> </p>
+
+<%= image_tag @product.image_1.thumb.url %>
+<%= image_tag @product.image_2.thumb.url %>
+<h4>&#8377; <%= @product.price %> </h4>
+<%# <%= simple_form_for [@product, @order_items] do |f| %> %>
+	<%# <%= f.input :quantity %> %>
+	<%# <%= f.button "Add to Cart" %> %>
+<%# <% end %> %>

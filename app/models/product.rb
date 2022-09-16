@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+
+	has_many :order_items, dependent: :destroy
+	
 	validates :title, presence: true
 	validates :description, presence: true
 	validates :price, presence: true
