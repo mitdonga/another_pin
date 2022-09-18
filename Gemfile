@@ -45,6 +45,7 @@ gem "bootsnap", require: false
 gem "active_link_to"
 
 gem "simple_form"
+gem 'country_select'
 
 gem "carrierwave"
 gem "mini_magick"

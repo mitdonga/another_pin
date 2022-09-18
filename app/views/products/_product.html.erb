@@ -3,5 +3,5 @@
 		<%= image_tag product.image_1.medium.url %>
 	<% end %>
 	<h3><%= link_to product.title, product_path(product) %> </h3>
-	<p> &#8377;<%= product.price %> </p>
+	<p> <%= number_to_currency product.number_to_usd %> </p>
 </div>

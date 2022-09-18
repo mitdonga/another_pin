@@ -4,7 +4,7 @@
 <%= image_tag @product.image_1.thumb.url %>
 <%= image_tag @product.image_2.thumb.url %>
 <h4>&#8377; <%= @product.price %> </h4>
-<%# <%= simple_form_for [@product, @order_items] do |f| %> %>
-	<%# <%= f.input :quantity %> %>
-	<%# <%= f.button "Add to Cart" %> %>
-<%# <% end %> %>
+<%= simple_form_for [@product, @order_items] do |f| %>
+	<%= f.input :quantity %>
+	<%= f.button :submit, "Add to Cart" %>
+<% end %>
