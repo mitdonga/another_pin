@@ -1,5 +1,7 @@
 <h1>Checkout</h1>
 
+<p>Order Items: <%= @current_cart.order_items.size %></p>
+
 <%= simple_form_for @order do |f| %>
 	<%= f.input :first_name %>
 	<%= f.input :last_name %>

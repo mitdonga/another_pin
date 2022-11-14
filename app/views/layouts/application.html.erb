@@ -19,10 +19,11 @@
 				<p>
 					<%= link_to "Shop", products_path %>&nbsp;&nbsp;&nbsp;&nbsp;
 					<%= link_to "Info", pages_info_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-					<%= link_to cart_path do %>
-						Cart <%= @current_cart.id %> (<%= @current_cart.total_quantity %>)
-					<% end %>&nbsp;&nbsp;&nbsp;&nbsp;
 					<% if user_signed_in? %>
+						<%= link_to "Cart", cart_path %>&nbsp;&nbsp;&nbsp;&nbsp;
+						<% if current_user.orders.any? %>
+							<%= link_to "Order", orders_path %>&nbsp;&nbsp;&nbsp;&nbsp;
+						<% end %>
 						<%= link_to "Log Out", destroy_user_session_path, data: { "turbo-method": :delete } %>&nbsp;&nbsp;&nbsp;&nbsp;
 						<%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;
 					<% else %>
@@ -34,6 +35,8 @@
 		</header>
 		<% if flash[:success].present? %>
 			<div class="flash-success"><p><%= flash[:success] %></p></div>
+		<% elsif flash[:error].present? %>
+			<div class="flash-error"><p><%= flash[:error] %></p></div>
 	  <% end %>
 		<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

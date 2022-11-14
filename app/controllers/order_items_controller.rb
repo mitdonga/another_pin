@@ -1,4 +1,4 @@
-class OrderItemsController < ApplicationController
+class OrderItemsController < ApplicationController	
 	def create
 		@product = Product.find(params[:product_id])
 		@quantity = form_params[:quantity]
@@ -9,7 +9,7 @@ class OrderItemsController < ApplicationController
 
 	def update
 		@product = Product.find(params[:product_id])
-		@order_item = OrderItem.find(params[:id])
+		@order_item = OrderItem.find_by(id: params[:id], cart: @current_cart)
 		@order_item.update(form_params)
 		flash[:success] = "Your cart has been updated successfully"
 		redirect_to product_path(@product)

@@ -3,8 +3,12 @@
 
 <%= image_tag @product.image_1.thumb.url %>
 <%= image_tag @product.image_2.thumb.url %>
-<h4>&#8377; <%= @product.price %> </h4>
-<%= simple_form_for [@product, @order_items] do |f| %>
-	<%= f.input :quantity %>
-	<%= f.button :submit, "Add to Cart" %>
+<h4>&#8377; <%= @product.number_to_usd %> </h4>
+<% if user_signed_in? %>
+	<%= simple_form_for [@product, @order_items] do |f| %>
+		<%= f.input :quantity %>
+		<%= f.button :submit, "Add to Cart" %>
+	<% end %>
+<% else %>
+	<p><%= link_to "Log In", new_user_session_path %> to purchase this product</p>
 <% end %>

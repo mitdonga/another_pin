@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def show
 		@product = Product.find(params[:id])
 
-		@order_items = @product.order_items.find_by(product: @product)
+		@order_items = @product.order_items.find_by(product: @product, cart: @current_cart)
 
 		if @order_items.nil?
 			@order_items = @product.order_items.new(product: @product, quantity: 1)
