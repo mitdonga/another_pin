@@ -56,7 +56,8 @@ gem 'sassc-rails'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
-
+gem 'stripe'
+gem 'jquery-rails'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

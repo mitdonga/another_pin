@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
 			cart = Cart.find_by(user: current_user)
 
 			if cart.nil?
-				# cart = current_cart.carts.new
 				@current_cart = Cart.create(user: current_user)
 				puts "Cart is nil"
 			else
@@ -21,21 +20,8 @@ class ApplicationController < ActionController::Base
 				puts "cart is not nil"
 			end
 
-			puts "========================= Current Cart Is  #{@current_cart.id} ====================================="
-			puts "========================= Session Is  #{session[:user_id]} ====================================="
-			puts "========================= User Id Is  #{current_user.id} ====================================="
-			# @current_cart = current_user.cart
-		# else
-			# redirect_to new_user_session_path
 		end
 
-		# @current_cart = Cart.find_or_create_by(id: session[:user_id])
-		# if session[:cart_id].present?
-		# 	@current_cart = Cart.find(session[:cart_id])
-		# else
-		# 	@current_cart = Cart.create
-		# 	session[:cart_id] = @current_cart.id
-		# end
 	end	
 
   protected

@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+		<script src="https://js.stripe.com/v3/"></script>
   </head>
 
   <body>
@@ -24,7 +25,7 @@
 						<% if current_user.orders.any? %>
 							<%= link_to "Order", orders_path %>&nbsp;&nbsp;&nbsp;&nbsp;
 						<% end %>
-						<%= link_to "Log Out", destroy_user_session_path, data: { "turbo-method": :delete } %>&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= link_to "Log Out", destroy_user_session_path, method: :delete %>&nbsp;&nbsp;&nbsp;&nbsp;
 						<%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;
 					<% else %>
 						<%= link_to "Sign Up", new_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;

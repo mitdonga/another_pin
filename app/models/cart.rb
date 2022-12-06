@@ -1,6 +1,5 @@
 class Cart < ApplicationRecord
 	has_many :order_items, dependent: :destroy
-	# belongs_to :order
 	belongs_to :user
 	has_one :order, dependent: :destroy
 

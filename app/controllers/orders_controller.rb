@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
 
+	before_action :require_login
+
 	def index
 		@orders = current_user.orders.order(created_at: :desc)
 	end
 
 	def new
 		@order = Order.new
-		# @order.cart = @current_cart
-		# @order.
 	end
 
 
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 		@order.user = current_user
 		@order.cart = @current_cart
 		
-		if @order.save
+		if @order.save_and_charge && @order.errors.blank?
 			
 			new_cart = Cart.new(user: current_user)
 
@@ -33,14 +33,22 @@ class OrdersController < ApplicationController
 				flash[:error] = "Oops, Error while saving cart"
 			end
 		else 
-			flash[:error] = "Oops, Error while saving order"
+			flash[:error] = "Oops, something went wrong, Please try again"
+			render :new
 		end
 			
 	end 
 
+	def require_login
+		unless user_signed_in?
+			flash[:error] = "Please Login or Signup"
+			redirect_to root_path
+		end
+	end
+
 	private
 
 	def form_params
-		params.require(:order).permit(:first_name, :last_name, :email, :country, :address_1, :address_2, :city, :postal_code)
+		params.require(:order).permit(:first_name, :last_name, :email, :country, :address_1, :address_2, :city, :postal_code, :stripe_token)
 	end
 end

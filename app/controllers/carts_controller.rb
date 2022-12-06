@@ -9,6 +9,6 @@ class CartsController < ApplicationController
 		else
 			@order_items = OrderItem.includes(:product).where(cart_id: @current_cart.id)
 		end
-
 	end
+
 end

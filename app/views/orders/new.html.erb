@@ -11,5 +11,45 @@
 	<%= f.input :address_2 %>
 	<%= f.input :city %>
 	<%= f.input :postal_code %>
+
+	<div id="card-errors">
+		<% @order.errors[:stripe_error].each do |message| %>
+			<p><%= message %></p>
+		<% end %>
+	</div>
+	<div id="card"></div>
 	<%= f.button :submit, "Submit Order" %>
 <% end %>
+
+<script>
+
+	var stripe = Stripe("<%= Rails.application.credentials[Rails.env.to_sym][:stripe_public_key] %>");
+	var elements = stripe.elements();
+	var card = elements.create("card", {hidePostalCode: true});
+
+	card.mount("#card");
+	var form = document.getElementById('new_order');
+
+
+		 form.addEventListener('submit', function(event) {
+      $('#submit-stripe').prop('disabled', true);
+      event.preventDefault();
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+					console.log(result.error.message);
+        } else {
+
+					console.log(result.token);
+					var token = document.createElement("input");
+							token.setAttribute("type", "hidden");
+							token.setAttribute("name", "order[stripe_token]");
+							token.setAttribute("value", result.token.id);
+
+          document.getElementById("new_order").appendChild(token);
+          form.submit();
+        }
+      });
+	})
+</script>
