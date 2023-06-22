@@ -28,13 +28,13 @@ class Order < ApplicationRecord
 	end
 
 	def get_items
-		self.cart.order_items
+		cart.order_items
 	end
 
 	def total_value
 		@total_price = 0
 
-		self.get_items.each do |item|
+		get_items.each do |item|
 			@total_price += item.product.price * item.quantity
 		end
 

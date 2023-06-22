@@ -22,6 +22,8 @@ class OrdersController < ApplicationController
 		@order.cart = @current_cart
 		
 		if @order.save_and_charge && @order.errors.blank?
+
+			OrderMailer.invoice(@order).deliver_now
 			
 			new_cart = Cart.new(user: current_user)
 

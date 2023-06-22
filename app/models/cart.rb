@@ -18,7 +18,7 @@ class Cart < ApplicationRecord
 	def total_price
 		@total_price = 0
 
-		self.order_items.all.each do |item|
+		order_items.all.each do |item|
 			@total_price += item.product.price * item.quantity
 		end
 

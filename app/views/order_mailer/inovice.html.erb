@@ -1,0 +1,23 @@
+<h1>Thank You For Your Order</h1>
+
+<p>
+	Order Id: <%= @order.id %>
+</p>
+
+<p>
+	Hi <%= @order.first_name %>, <br><br>
+	Your oder has been received, we will deliver it within 5-7 business days.<br><br>
+</p>	
+
+<h4>Order Details</h4>
+<ul>
+	<li><strong>Order Id:</strong> <%= @order.id %></li>
+	<li><strong>Order Value:</strong> <%= @order.total_value.to_i/100 %> INR </li>
+	<li><strong>Name:</strong> <%= @order.first_name %> <%= @order.last_name %></li>
+	<li><strong>Email:</strong> <%= @order.email %> </li>
+	<li><strong>Phone:</strong> <%= @order.phone %> </li>
+	<li><strong>Address:</strong> <%= @order.address_1 %>, <%= @order.address_2 %>, <%= @order.city %>, <%= @order.postal_code %></li>
+</ul>
+<p>	
+	If you any concern feel free to reach us at mit@anotherpin.com.
+</p>
